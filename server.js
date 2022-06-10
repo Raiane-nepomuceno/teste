@@ -1,4 +1,5 @@
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -14,13 +15,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-app.get("/", (req, res) => {
-  res.json({ msg: "Está funcionando!" });
-});
-
-const db = require("./app/models");
+const db = require("./src/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
@@ -34,8 +29,16 @@ db.mongoose
     process.exit();
   });
 
-require("./app/routes/filme.route")(app);
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Servidor está executando na porta ${PORT}.`);
-});
+app.get("/", (req, res) => {
+    res.json({ msg: "Está funcionando!" });
+  });
+
+require("./src/routes/user.routes")(app);
+require("./src/routes/book.routes")(app);
+require("./src/routes/admin.routes")(app);
+require("./src/routes/bookUser.routes")(app);
+
+const PORT = process.env.PORT || 3333;
+  app.listen(PORT, () => {
+    console.log(`Servidor está executando na porta ${PORT}.`);
+  });
