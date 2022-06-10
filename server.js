@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./src/models");
+const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
@@ -33,10 +33,10 @@ app.get("/", (req, res) => {
     res.json({ msg: "Está funcionando!" });
   });
 
-require("./src/routes/user.routes")(app);
-require("./src/routes/book.routes")(app);
-require("./src/routes/admin.routes")(app);
-require("./src/routes/bookUser.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/book.routes")(app);
+require("./app/routes/admin.routes")(app);
+require("./app/routes/bookUser.routes")(app);
 
 const PORT = process.env.PORT || 3333;
   app.listen(PORT, () => {
