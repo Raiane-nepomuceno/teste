@@ -1,7 +1,7 @@
 {
-  "name": "filme-backend",
+  "name": "library-backend",
   "version": "1.0.0",
-  "description": "Backend do projeto filme para o EAD 02 de TC2S6",
+  "description": "Backend do projeto biblioteca para o trabalho final de TC2S6",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
